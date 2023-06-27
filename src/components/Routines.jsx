@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function Routines() {
   const [routines, setRoutines] = useState([]);
   const [deactivationStatus, setDeactivationStatus] = useState(false);
+  const [completionStatus, setCompletionStatus] = useState(false);
 
   console.log(routines);
 
@@ -27,12 +28,24 @@ export default function Routines() {
       }
     }
     getRoutines();
-  }, [deactivationStatus]);
+  }, [deactivationStatus, completionStatus]);
 
   const deactivateRoutine = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/home/${id}`);
+      const response = await axios.put(
+        `http://localhost:3000/api/home/${id}/deactivate`
+      );
       setDeactivationStatus((prevStatus) => !prevStatus);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+  const completeRoutine = async (id) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/home/${id}/complete`
+      );
+      setCompletionStatus((prevStatus) => !prevStatus);
     } catch (error) {
       console.log("Error:", error);
     }
@@ -48,14 +61,16 @@ export default function Routines() {
         {routines && routines.length ? (
           routines.map((data) => {
             return (
-              <div className=" bg-amber-200">
-                <div className="grid grid-cols-4 pl-5 p-2 m-2 grid-flow-col ">
+              <div>
+                <div>
                   <ListRoutines
                     routine={data.routine}
                     time={data.time}
                     active={data.active}
                     id={data.id}
                     deactivateRoutine={deactivateRoutine}
+                    completeRoutine={completeRoutine}
+                    complete={data.complete}
                   />
                 </div>
               </div>
