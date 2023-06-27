@@ -27,11 +27,12 @@ export default function AddRoutine() {
 
   return (
     <>
-      <div>
-        <h2>Add a routine</h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Field className="field">
+      <div className="w-96 flex flex-col items-center m-auto ">
+        <h1 className="text-lg py-8 font-medium">Add a routine</h1>
+        <Form className="bg-amber-200 p-10 " onSubmit={handleSubmit}>
+          <Form.Field className="py-5">
             <input
+              className="p-5 rounded-md"
               required
               type="text"
               name="routine"
@@ -39,8 +40,9 @@ export default function AddRoutine() {
               ref={routineRef}
             />
           </Form.Field>
-          <Form.Field className="field">
+          <Form.Field className="max-w-max ">
             <input
+              className="p-5 rounded-md"
               required
               type="time"
               name="time"
@@ -49,7 +51,10 @@ export default function AddRoutine() {
             />
           </Form.Field>
           {/* <Link to="/home"> */}
-          <Button className="submit" type="submit">
+          <Button
+            className="submit my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
+            type="submit"
+          >
             submit
           </Button>
           {/* </Link> */}

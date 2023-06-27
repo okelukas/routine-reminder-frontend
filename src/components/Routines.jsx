@@ -5,21 +5,38 @@ import "../styles/App.css";
 import { Link } from "react-router-dom";
 
 export default function Routines() {
-  const [routines, setRoutines] = useState();
+  const [routines, setRoutines] = useState([]);
+  const [deactivationStatus, setDeactivationStatus] = useState(false);
+
+  console.log(routines);
 
   useEffect(() => {
     async function getRoutines() {
       try {
-        const routines = await axios.get(`http://localhost:3000/api/home`);
-        console.log(routines);
-        setRoutines(routines.data);
+        const allRoutines = await axios.get(`http://localhost:3000/api/home`);
+
+        //filter for only the active routines
+
+        const routines = allRoutines.data.filter(
+          (item) => item.active === true
+        );
+        setRoutines(routines);
         return routines.data;
       } catch (err) {
         console.log(err);
       }
     }
     getRoutines();
-  }, []);
+  }, [deactivationStatus]);
+
+  const deactivateRoutine = async (id) => {
+    try {
+      const response = await axios.put(`http://localhost:3000/api/home/${id}`);
+      setDeactivationStatus((prevStatus) => !prevStatus);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   console.log(routines);
 
@@ -28,8 +45,7 @@ export default function Routines() {
       {" "}
       <div className="w-96 flex flex-col m-auto">
         <h1 className="text-2xl text-center p-5">Routines</h1>
-
-        {routines &&
+        {routines && routines.length ? (
           routines.map((data) => {
             return (
               <div className=" bg-amber-200">
@@ -38,11 +54,16 @@ export default function Routines() {
                     routine={data.routine}
                     time={data.time}
                     active={data.active}
+                    id={data.id}
+                    deactivateRoutine={deactivateRoutine}
                   />
                 </div>
               </div>
             );
-          })}
+          })
+        ) : (
+          <p>No active routines found.</p>
+        )}
 
         <div className="flex justify-center p-5">
           <Link to="/add">
