@@ -48,16 +48,17 @@ export default function AddRoutine() {
               name="time"
               placeholder="Time"
               ref={timeRef}
+              timeFormat="HH:mm"
             />
           </Form.Field>
-          {/* <Link to="/home"> */}
+          
           <Button
             className="submit my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
             type="submit"
           >
             submit
           </Button>
-          {/* </Link> */}
+          
         </Form>
       </div>
     </>

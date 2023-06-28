@@ -8,8 +8,9 @@ export default function Routines() {
   const [routines, setRoutines] = useState([]);
   const [deactivationStatus, setDeactivationStatus] = useState(false);
   const [completionStatus, setCompletionStatus] = useState(false);
+  const [editRequestStatus, setEditRequestStatus] = useState(false);
 
-  console.log(routines);
+  /* console.log(routines); */
 
   useEffect(() => {
     async function getRoutines() {
@@ -28,7 +29,7 @@ export default function Routines() {
       }
     }
     getRoutines();
-  }, [deactivationStatus, completionStatus]);
+  }, [deactivationStatus, completionStatus, editRequestStatus]);
 
   const deactivateRoutine = async (id) => {
     try {
@@ -50,8 +51,18 @@ export default function Routines() {
       console.log("Error:", error);
     }
   };
+  const editRequest = async (id) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/home/${id}/editrequest`
+      );
+      setEditRequestStatus((prevStatus) => !prevStatus);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
-  console.log(routines);
+  /* console.log(routines); */
 
   return (
     <>
@@ -71,6 +82,10 @@ export default function Routines() {
                     deactivateRoutine={deactivateRoutine}
                     completeRoutine={completeRoutine}
                     complete={data.complete}
+                    editRequest={editRequest}
+                    editRequestStatusAPI={data.edit}
+                    editRequestStatus={editRequestStatus}
+          
                   />
                 </div>
               </div>
