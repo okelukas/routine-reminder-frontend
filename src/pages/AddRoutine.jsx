@@ -11,7 +11,7 @@ export default function AddRoutine() {
   const routineForm = async (routineValue, timeValue) => {
     try {
       await axios.post("http://localhost:3000/api/add", {
-        routine: routineValue,
+        name: routineValue,
         time: `${timeValue}:00`,
       });
     } catch (e) {
@@ -51,14 +51,13 @@ export default function AddRoutine() {
               timeFormat="HH:mm"
             />
           </Form.Field>
-          
+
           <Button
             className="submit my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
             type="submit"
           >
             submit
           </Button>
-          
         </Form>
       </div>
     </>

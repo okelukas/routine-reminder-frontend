@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import axios from "axios";
 import "../styles/App.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Form,
@@ -17,6 +18,8 @@ const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const timezoneRef = useRef();
+
+  const navigate = useNavigate();
 
   const loginForm = async (
     emailValue,
@@ -43,6 +46,7 @@ const Signup = () => {
     const passwordValue = passwordRef.current.value;
     const timezoneValue = timezoneRef.current.value;
     await loginForm(emailValue, usernameValue, passwordValue, timezoneValue);
+    navigate("/home");
   };
 
   return (
@@ -59,7 +63,7 @@ const Signup = () => {
               src="../src/assets/toothbrush.png"
               style={{ height: "30px", width: "30px" }}
             />{" "}
-            Signup
+            Sign up
           </Header>
           <Form size="large" onSubmit={handleSubmit}>
             <Segment stacked>
@@ -106,7 +110,8 @@ const Signup = () => {
             </Segment>
           </Form>
           <Message>
-            Already have an account? <Link to="#">Log in</Link>
+            Already have an account? <Link to="/login">Log in </Link>
+            <br />
           </Message>
         </Grid.Column>
       </Grid>
