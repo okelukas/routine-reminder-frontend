@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/App.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Button,
@@ -28,6 +28,7 @@ const Signup = () => {
       passwordRef.current.value,
       timezoneRef.current.value
     );
+    navigate("/home");
   };
 
   return (
