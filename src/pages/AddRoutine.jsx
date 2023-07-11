@@ -10,10 +10,22 @@ export default function AddRoutine() {
 
   const routineForm = async (routineValue, timeValue) => {
     try {
-      await axios.post("http://localhost:3000/api/add", {
-        name: routineValue,
-        time: `${timeValue}:00`,
-      });
+      const token = localStorage.getItem("token");
+      console.log(token);
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      await axios.post(
+        "http://localhost:3000/api/home",
+        {
+          routine: routineValue,
+          time: `${timeValue}:00`,
+        },
+        {
+          headers: headers,
+        }
+      );
     } catch (e) {
       console.error(e);
     }

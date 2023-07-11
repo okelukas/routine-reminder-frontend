@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
 import "../styles/App.css";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import {
   Button,
   Form,
@@ -18,35 +18,16 @@ const Signup = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const timezoneRef = useRef();
-
-  const navigate = useNavigate();
-
-  const loginForm = async (
-    emailValue,
-    usernameValue,
-    passwordValue,
-    timezoneValue
-  ) => {
-    try {
-      await axios.post("http://localhost:3000/signup", {
-        email: emailValue,
-        username: usernameValue,
-        password: passwordValue,
-        timezone: timezoneValue,
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  const { loading, error, signUpUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const emailValue = emailRef.current.value;
-    const usernameValue = usernameRef.current.value;
-    const passwordValue = passwordRef.current.value;
-    const timezoneValue = timezoneRef.current.value;
-    await loginForm(emailValue, usernameValue, passwordValue, timezoneValue);
-    navigate("/home");
+    await signUpUser(
+      emailRef.current.value,
+      usernameRef.current.value,
+      passwordRef.current.value,
+      timezoneRef.current.value
+    );
   };
 
   return (
