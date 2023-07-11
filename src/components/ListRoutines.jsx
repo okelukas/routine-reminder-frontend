@@ -11,7 +11,6 @@ export default function ListRoutines({
   complete,
   editRoutine,
   editRequest,
-  editRequestStatus,
   editRequestStatusAPI,
 }) {
   const displayTime = time.slice(0, 5);

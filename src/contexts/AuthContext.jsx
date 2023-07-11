@@ -14,6 +14,7 @@ const AuthState = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginUser, setLoginUser] = useState(false);
 
+
   useEffect(() => {
     if (!isAuthenticated) {
       const getUser = async () => {
@@ -103,6 +104,8 @@ const AuthState = ({ children }) => {
     }
   };
 
+  
+
   return (
     <AuthContext.Provider
       value={{
@@ -114,7 +117,6 @@ const AuthState = ({ children }) => {
         logout,
         logInUser,
         signUpUser,
-   
       }}
     >
       {children}

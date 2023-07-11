@@ -6,7 +6,7 @@ export default function Landing() {
   return (
     <>
       <div className="flex justify-center m-20">
-        <NavLink to="/home">
+        <NavLink to="/login">
           <div className="flex-col rounded-xl overflow-hidden shadow-md m-5 max-w-md">
             <img
               src="../src/assets/toothbrush.png"

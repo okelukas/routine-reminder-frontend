@@ -4,7 +4,7 @@ import Routines from "../components/Routines";
 import useAuth from "../hooks/useAuth";
 
 export default function Home() {
-  const { token, getRoutines } = useAuth();
+  const { getRoutines } = useAuth();
   const [userData, setUserData] = useState(null);
   console.log(userData);
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Routines allRoutines={userData}/>
+      <Routines allRoutines={userData} />
     </>
   );
 }
