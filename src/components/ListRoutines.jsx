@@ -5,11 +5,11 @@ import "../styles/App.css";
 export default function ListRoutines({
   routine,
   time,
-  active,
   id,
   deactivateRoutine,
   completeRoutine,
   complete,
+  editRoutine,
   editRequest,
   editRequestStatus,
   editRequestStatusAPI,
@@ -21,21 +21,8 @@ export default function ListRoutines({
 
   console.log(inputState);
 
-  const routineForm = async (routineValue, timeValue, idValue) => {
-    try {
-      console.log("Sending request with id:", idValue);
-      await axios.put(`http://localhost:3000/api/home/${idValue}/edit`, {
-        time: timeValue,
-        routine: routineValue,
-      });
-      editRequest(idValue);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   const handleSubmit = async () => {
-    await routineForm(routineRef.current.value, timeRef.current.value, id);
+    await editRoutine(routineRef.current.value, timeRef.current.value, id);
     setInputState(true);
   };
   return (
