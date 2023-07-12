@@ -10,6 +10,7 @@ export default function Routines({ allRoutines }) {
   const [deactivationStatus, setDeactivationStatus] = useState(false);
   const [completionStatus, setCompletionStatus] = useState(false);
   const [editRequestStatus, setEditRequestStatus] = useState(false);
+  const [resetCookie, setResetCookie] = useState(false);
   const { getRoutines } = useAuth();
 
   const getHeader = () => {
@@ -21,11 +22,87 @@ export default function Routines({ allRoutines }) {
     return headers;
   };
 
+  // RESET COOKIES
+
+  const setCookie = async () => {
+    try {
+      const header = getHeader();
+      const response = await axios.put(
+        "http://localhost:3000/api/home/setCookie",
+        {},
+        {
+          headers: header,
+        }
+      );
+
+      const cookie = response.data;
+      //localStorage.setItem("resetCookie", cookie);
+      localStorage.setCookie("resetCookie", cookie);
+      console.log("Cookie set successfully");
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  const resetCompletion = async () => {
+    try {
+      const header = getHeader();
+      const response = await axios
+        .put(
+          "http://localhost:3000/api/home/reset",
+          {},
+          {
+            headers: header,
+          }
+        )
+        .then((response) => {
+          console.log("Completion resetted successfully");
+        })
+        .catch((error) => {
+          console.error("Failed to reset completion", error);
+        });
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  const checkCookie = () => {
+    const cookieExists = localStorage.getItem("resetCookie") !== null;
+
+    if (cookieExists) {
+      console.log("Cookie already exists");
+    } else {
+      resetCompletion();
+      setCookie();
+      console.log("New Cookie created");
+    }
+  };
+
+  const checkCookieExpiration = () => {
+    const cookieValue = localStorage.getItem("resetCookie");
+
+    if (cookieValue) {
+      const expirationDate = new Date(cookieValue);
+
+      if (expirationDate < new Date()) {
+        console.log("Cookie has expired");
+      } else {
+        console.log("Cookie is still valid");
+      }
+    } else {
+      console.log("Cookie not found");
+    }
+  };
+
+  // ON RENDER
+
   useEffect(() => {
     async function updateRoutines() {
       //console.log(allRoutines);
 
       try {
+        checkCookie();
+        checkCookieExpiration();
         const allRoutines = await getRoutines();
         setRoutines(allRoutines);
         console.log(routines);
@@ -36,6 +113,8 @@ export default function Routines({ allRoutines }) {
     }
     updateRoutines();
   }, [deactivationStatus, completionStatus, editRequestStatus]);
+
+  // ROUTINE FUNCTIONS
 
   const deactivateRoutine = async (id) => {
     try {
