@@ -1,5 +1,5 @@
 import { Form, Button } from "semantic-ui-react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -7,6 +7,8 @@ export default function AddRoutine() {
   const routineRef = useRef();
   const timeRef = useRef();
   const navigate = useNavigate();
+
+  const [frequency, setFrequency] = useState("");
 
   const routineForm = async (routineValue, timeValue) => {
     try {
@@ -29,6 +31,18 @@ export default function AddRoutine() {
     } catch (e) {
       console.error(e);
     }
+  };
+  const changeFrequency = (selectedFrequency) => {
+    setFrequency(selectedFrequency);
+  };
+  const handleDailyClick = (event) => {
+    event.preventDefault();
+    changeFrequency("daily");
+  };
+
+  const handleWeeklyClick = (event) => {
+    event.preventDefault();
+    changeFrequency("weekly");
   };
 
   const handleSubmit = async (e) => {
