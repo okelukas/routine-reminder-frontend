@@ -7,7 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 export default () => {
   const { isAuthenticated, logout } = useAuth();
 
-  console.log(isAuthenticated);
+  //console.log(isAuthenticated);
 
   return (
     <>

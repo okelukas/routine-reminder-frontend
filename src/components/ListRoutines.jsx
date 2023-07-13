@@ -18,7 +18,7 @@ export default function ListRoutines({
   const timeRef = useRef();
   const [inputState, setInputState] = useState(true);
 
-  console.log(inputState);
+  //console.log(inputState);
 
   const handleSubmit = async () => {
     await editRoutine(routineRef.current.value, timeRef.current.value, id);

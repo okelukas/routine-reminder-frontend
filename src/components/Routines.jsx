@@ -37,7 +37,7 @@ export default function Routines({ allRoutines }) {
 
       const cookie = response.data;
       //localStorage.setItem("resetCookie", cookie);
-      localStorage.setCookie("resetCookie", cookie);
+      localStorage.setItem("resetCookie", cookie);
       console.log("Cookie set successfully");
     } catch (error) {
       console.log("Error:", error);
@@ -105,7 +105,7 @@ export default function Routines({ allRoutines }) {
         checkCookieExpiration();
         const allRoutines = await getRoutines();
         setRoutines(allRoutines);
-        console.log(routines);
+        //console.log(routines);
         return routines;
       } catch (err) {
         console.log(err);

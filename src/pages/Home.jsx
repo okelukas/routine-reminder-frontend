@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 export default function Home() {
   const { getRoutines } = useAuth();
   const [userData, setUserData] = useState(null);
-  console.log(userData);
+  //console.log(userData);
   useEffect(() => {
     getRoutines().then((data) => setUserData(data));
   }, []);
