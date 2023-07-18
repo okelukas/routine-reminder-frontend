@@ -1,29 +1,35 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import "../styles/App.css";
+import { useRoutines } from "../contexts/RoutineContext";
 
 export default function ListRoutines({
   routine,
   time,
   id,
-  deactivateRoutine,
-  completeRoutine,
   complete,
-  editRoutine,
-  editRequest,
   editRequestStatusAPI,
 }) {
   const displayTime = time.slice(0, 5);
   const routineRef = useRef();
   const timeRef = useRef();
   const [inputState, setInputState] = useState(true);
+  const {
+    deactivateRoutine,
+    editRequest,
+    editRequestStatus,
+    editRoutine,
+    completionStatus,
+    completeRoutine,
+  } = useRoutines();
 
-  //console.log(inputState);
+  //console.log(time);
 
   const handleSubmit = async () => {
     await editRoutine(routineRef.current.value, timeRef.current.value, id);
     setInputState(true);
   };
+  console.log(editRequestStatusAPI);
   return (
     <>
       <div
