@@ -1,0 +1,192 @@
+import { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import useCookies from "../hooks/useCookies";
+
+export const RoutineContext = createContext();
+
+export const useRoutines = () => useContext(RoutineContext);
+
+const RoutineState = ({ children }) => {
+  const { token, getRoutines } = useAuth();
+  const { checkCookie, checkCookieExpiration } = useCookies();
+  const navigate = useNavigate();
+  const [sortedRoutines, setSortedRoutines] = useState([]);
+  const [routines, setRoutines] = useState([]);
+  const [deactivationStatus, setDeactivationStatus] = useState(false);
+  const [editRequestStatus, setEditRequestStatus] = useState(false);
+  const [completionStatus, setCompletionStatus] = useState(false);
+
+  const getHeader = () => {
+    const token = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return headers;
+  };
+
+  async function fetchData() {
+    const routinesData = await updateRoutines();
+    createRoutinesArray(routinesData);
+  }
+
+  //PREPARE ARRAY FOR CARDS
+
+  const createRoutinesArray = (routinesData) => {
+    const daysOfWeek = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+
+    const updateDaily = routinesData.filter((routine) => routine.daily);
+
+    const weekdaysWithRoutines = daysOfWeek.map((day) => {
+      return {
+        weekday: day,
+        routines: [...updateDaily],
+      };
+    });
+
+    const updateWeekly = routinesData.filter((routine) => !routine.daily);
+
+    for (let i = 0; i < updateWeekly.length; i++) {
+      const { weekdays } = updateWeekly[i];
+      for (let j = 0; j < weekdaysWithRoutines.length; j++) {
+        const { weekday, routines } = weekdaysWithRoutines[j];
+        if (weekdays.includes(weekday)) {
+          routines.push(updateWeekly[i]);
+        }
+      }
+    }
+
+    const d = new Date();
+    let currentDate = d.getDay();
+    if (currentDate >= 1) {
+      currentDate -= 1;
+    } else {
+      currentDate = 6;
+    }
+    console.log(weekdaysWithRoutines[currentDate]);
+
+    setSortedRoutines(weekdaysWithRoutines[currentDate]);
+  };
+
+  //update array
+
+  const updateRoutines = async () => {
+    try {
+      checkCookie();
+      checkCookieExpiration();
+      const allRoutines = await getRoutines();
+      setRoutines(allRoutines);
+      console.log(routines);
+
+      return allRoutines;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deactivateRoutine = async (id) => {
+    try {
+      const header = getHeader();
+      const response = await axios.put(
+        `http://localhost:3000/api/home/${id}/deactivate`,
+        {},
+        {
+          headers: header,
+        }
+      );
+      setDeactivationStatus((prevStatus) => !prevStatus);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  const editRequest = async (id) => {
+    try {
+      const header = getHeader();
+      const response = await axios.put(
+        `http://localhost:3000/api/home/${id}/editrequest`,
+        {},
+        {
+          headers: header,
+        }
+      );
+      setEditRequestStatus((prevStatus) => !prevStatus);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  const editRoutine = async (routineValue, timeValue, idValue) => {
+    try {
+      const header = getHeader();
+      console.log("Sending request with id:", idValue);
+      await axios.put(
+        `http://localhost:3000/api/home/${idValue}/edit`,
+        {
+          time: timeValue,
+          routine: routineValue,
+        },
+        {
+          headers: header,
+        }
+      );
+      editRequest(idValue);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const completeRoutine = async (id) => {
+    console.log(id);
+    try {
+      const header = getHeader();
+
+      const response = await axios.put(
+        `http://localhost:3000/api/home/${id}/complete`,
+        {},
+        {
+          headers: header,
+        }
+      );
+
+      setCompletionStatus((prevStatus) => !prevStatus);
+      console.log(completionStatus);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  return (
+    <RoutineContext.Provider
+      value={{
+        sortedRoutines,
+        fetchData,
+        createRoutinesArray,
+        updateRoutines,
+        getHeader,
+        deactivateRoutine,
+        deactivationStatus,
+        editRequest,
+        editRoutine,
+        completeRoutine,
+        completionStatus,
+        editRequestStatus,
+        getRoutines,
+      }}
+    >
+      {" "}
+      {children}
+    </RoutineContext.Provider>
+  );
+};
+
+export default RoutineState;

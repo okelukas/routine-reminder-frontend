@@ -10,10 +10,9 @@ const AuthState = ({ children }) => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginUser, setLoginUser] = useState(false);
-
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -25,6 +24,7 @@ const AuthState = ({ children }) => {
           setIsAuthenticated(true);
           setLoading(false);
         } catch (error) {
+          console.log("Token not found!");
           setToken(null);
           localStorage.removeItem("token");
           setLoading(false);
@@ -104,8 +104,6 @@ const AuthState = ({ children }) => {
     }
   };
 
-  
-
   return (
     <AuthContext.Provider
       value={{
@@ -114,6 +112,7 @@ const AuthState = ({ children }) => {
         loading,
         isAuthenticated,
         getRoutines,
+
         logout,
         logInUser,
         signUpUser,

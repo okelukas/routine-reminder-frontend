@@ -4,218 +4,54 @@ import ListRoutines from "./ListRoutines.jsx";
 import "../styles/App.css";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useRoutines } from "../contexts/RoutineContext.jsx";
 
-export default function Routines({ allRoutines }) {
-  const [routines, setRoutines] = useState([]);
-  const [deactivationStatus, setDeactivationStatus] = useState(false);
-  const [completionStatus, setCompletionStatus] = useState(false);
-  const [editRequestStatus, setEditRequestStatus] = useState(false);
-  const [resetCookie, setResetCookie] = useState(false);
-  const { getRoutines } = useAuth();
+export default function Routines() {
+  /* const [resetCookie, setResetCookie] = useState(false);
+  const [data, setData] = useState([]); */
 
-  const getHeader = () => {
-    const token = localStorage.getItem("token");
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-
-    return headers;
-  };
-
-  // RESET COOKIES
-
-  const setCookie = async () => {
-    try {
-      const header = getHeader();
-      const response = await axios.put(
-        "http://localhost:3000/api/home/setCookie",
-        {},
-        {
-          headers: header,
-        }
-      );
-
-      const cookie = response.data;
-      //localStorage.setItem("resetCookie", cookie);
-      localStorage.setItem("resetCookie", cookie);
-      console.log("Cookie set successfully");
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
-  const resetCompletion = async () => {
-    try {
-      const header = getHeader();
-      const response = await axios
-        .put(
-          "http://localhost:3000/api/home/reset",
-          {},
-          {
-            headers: header,
-          }
-        )
-        .then((response) => {
-          console.log("Completion resetted successfully");
-        })
-        .catch((error) => {
-          console.error("Failed to reset completion", error);
-        });
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
-  const checkCookie = () => {
-    const cookieExists = localStorage.getItem("resetCookie") !== null;
-
-    if (cookieExists) {
-      console.log("Cookie already exists");
-    } else {
-      resetCompletion();
-      setCookie();
-      console.log("New Cookie created");
-    }
-  };
-
-  const checkCookieExpiration = () => {
-    const cookieValue = localStorage.getItem("resetCookie");
-
-    if (cookieValue) {
-      const expirationDate = new Date(cookieValue);
-
-      if (expirationDate < new Date()) {
-        console.log("Cookie has expired");
-      } else {
-        console.log("Cookie is still valid");
-      }
-    } else {
-      console.log("Cookie not found");
-    }
-  };
+  //const { getRoutines } = useAuth();
+  const {
+    sortedRoutines,
+    getRoutines,
+    fetchData,
+    updateRoutines,
+    deactivationStatus,
+    editRequestStatus,
+    completionStatus,
+  } = useRoutines();
 
   // ON RENDER
 
   useEffect(() => {
-    async function updateRoutines() {
-      //console.log(allRoutines);
-
-      try {
-        checkCookie();
-        checkCookieExpiration();
-        const allRoutines = await getRoutines();
-        setRoutines(allRoutines);
-        //console.log(routines);
-        return routines;
-      } catch (err) {
-        console.log(err);
-      }
-    }
     updateRoutines();
+
+    fetchData();
   }, [deactivationStatus, completionStatus, editRequestStatus]);
 
-  // ROUTINE FUNCTIONS
-
-  const deactivateRoutine = async (id) => {
-    try {
-      const header = getHeader();
-      const response = await axios.put(
-        `http://localhost:3000/api/home/${id}/deactivate`,
-        {},
-        {
-          headers: header,
-        }
-      );
-      setDeactivationStatus((prevStatus) => !prevStatus);
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-  const completeRoutine = async (id) => {
-    console.log(id);
-    try {
-      const header = getHeader();
-
-      const response = await axios.put(
-        `http://localhost:3000/api/home/${id}/complete`,
-        {},
-        {
-          headers: header,
-        }
-      );
-
-      setCompletionStatus((prevStatus) => !prevStatus);
-      console.log(completionStatus);
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
-  const editRequest = async (id) => {
-    try {
-      const header = getHeader();
-      const response = await axios.put(
-        `http://localhost:3000/api/home/${id}/editrequest`,
-        {},
-        {
-          headers: header,
-        }
-      );
-      setEditRequestStatus((prevStatus) => !prevStatus);
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-  const editRoutine = async (routineValue, timeValue, idValue) => {
-    try {
-      const header = getHeader();
-      console.log("Sending request with id:", idValue);
-      await axios.put(
-        `http://localhost:3000/api/home/${idValue}/edit`,
-        {
-          time: timeValue,
-          routine: routineValue,
-        },
-        {
-          headers: header,
-        }
-      );
-      editRequest(idValue);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  /* console.log(routines); */
-
+  //console.log(sortedRoutines.routines?.edit);
   return (
     <>
-      {" "}
       <div className="w-96 flex flex-col m-auto">
-        <h1 className="text-2xl text-center p-5">Routines</h1>
+        <h1 className="text-2xl text-center p-5">
+          Routines – {sortedRoutines.weekday}
+        </h1>
 
-        {routines && routines.length ? (
-          routines.map((data) => {
-            return (
-              <div>
-                <div>
-                  <ListRoutines
-                    routine={data.name}
-                    time={data.time}
-                    id={data.routine_id}
-                    deactivateRoutine={deactivateRoutine}
-                    completeRoutine={completeRoutine}
-                    complete={data.complete}
-                    editRequest={editRequest}
-                    editRequestStatusAPI={data.edit}
-                    editRequestStatus={editRequestStatus}
-                    editRoutine={editRoutine}
-                  />
-                </div>
-              </div>
-            );
-          })
+        {sortedRoutines && sortedRoutines.routines?.length ? (
+          sortedRoutines.routines.map((routine) => (
+            <>
+              <ListRoutines
+                key={routine.routine_id}
+                routine={routine.name}
+                time={routine.time}
+                id={routine.routine_id}
+                complete={routine.complete}
+                editRequestStatusAPI={routine.edit}
+              />
+            </>
+          ))
         ) : (
-          <p>No active routines found.</p>
+          <p>No routines found for {sortedRoutines.weekday}</p>
         )}
 
         <div className="flex justify-center p-5">
