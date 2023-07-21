@@ -72,117 +72,168 @@ export default function AddRoutine() {
         // Weekday already selected
         return prevWeekdays.filter((day) => day !== weekday);
       } else {
-        // Weekday not selected
+        // Weekday not yet selected
         return [...prevWeekdays, weekday];
       }
     });
   };
-  /*  useEffect(() => {
-    console.log(selectedWeekdays);
-  }, [selectedWeekdays]); */
+
+  console.log(selectedWeekdays);
 
   return (
     <>
-      <div className="w-96 flex flex-col items-center m-auto ">
-        <h1 className="text-lg py-8 font-medium">Add a routine</h1>
-        <Form className="bg-amber-200 p-10 " onSubmit={handleSubmit}>
-          <Form.Field className="py-5">
-            <input
-              className="p-5 rounded-md"
-              required
-              type="text"
-              name="routine"
-              placeholder="Routine"
-              ref={routineRef}
-            />
-          </Form.Field>
-          <Form.Field className="max-w-max ">
-            <input
-              className="p-5 rounded-md"
-              required
-              type="time"
-              name="time"
-              placeholder="Time"
-              ref={timeRef}
-              timeFormat="HH:mm"
-            />
-          </Form.Field>
-          <Form.Field className="py-5">
-            <Button
-              className=" my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
-              type="button"
-              onClick={handleDailyClick}
-            >
-              Daily
-            </Button>
-            <Button
-              className=" my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
-              type="button"
-              onClick={handleWeeklyClick}
-            >
-              Weekly
-            </Button>
-          </Form.Field>
-          {frequency === false && (
-            <Form.Field>
+      <div className="flex flex-col items-center ">
+        <div className="rounded-xl mx-5 bg-teal-100 bg-opacity-50 flex flex-col px-12 pb-8 w-5/6">
+          <h1 className="text-xl text-left py-8 font-medium font-typewriter ">
+            New routine
+          </h1>
+          <Form className="" onSubmit={handleSubmit} id="add-form">
+            <Form.Field className="">
+              <input
+                className="rounded-md bg-white"
+                required
+                type="text"
+                name="routine"
+                placeholder="Routine"
+                ref={routineRef}
+              />
+            </Form.Field>
+            <Form.Field className="">
+              <input
+                className=" w-full bg-white"
+                required
+                type="time"
+                name="time"
+                placeholder="Time"
+                ref={timeRef}
+                timeFormat="HH:mm"
+              />
+            </Form.Field>
+            <Form.Field className=" grid grid-cols-2 place-content-stretch">
               <Button
-                className="my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
+                className={"ui roboto addFrequencyBtn"}
                 type="button"
-                onClick={() => toggleSelection("Monday")}
+                onClick={handleDailyClick}
+                id={`${frequency ? "btnFrequencyDaily" : ""}`}
               >
-                Monday
+                Daily
               </Button>
               <Button
-                className="my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
+                className="ui roboto addFrequencyBtn"
                 type="button"
-                onClick={() => toggleSelection("Tuesday")}
+                onClick={handleWeeklyClick}
               >
-                Tuesday
-              </Button>
-              <Button
-                className="my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
-                type="button"
-                onClick={() => toggleSelection("Wednesday")}
-              >
-                Wednesday
-              </Button>
-              <Button
-                className="my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
-                type="button"
-                onClick={() => toggleSelection("Thursday")}
-              >
-                Thursday
-              </Button>
-              <Button
-                className="my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
-                type="button"
-                onClick={() => toggleSelection("Friday")}
-              >
-                Friday
-              </Button>
-              <Button
-                className="my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
-                type="button"
-                onClick={() => toggleSelection("Saturday")}
-              >
-                Saturday
-              </Button>
-              <Button
-                className="my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
-                type="button"
-                onClick={() => toggleSelection("Sunday")}
-              >
-                Sunday
+                Weekly
               </Button>
             </Form.Field>
-          )}
+            {frequency === false && (
+              <Form.Field>
+                <div className="flex flex-col place-items-center pt-5">
+                  <div>
+                    <Button
+                      className={`ui roboto weekdayBtn `}
+                      type="button"
+                      onClick={() => toggleSelection("Monday")}
+                      id={`${
+                        selectedWeekdays.includes("Monday")
+                          ? "special"
+                          : "notSpecial"
+                      }`}
+                    >
+                      Mon
+                    </Button>
+                    <Button
+                      className={`ui roboto weekdayBtn `}
+                      onClick={() => toggleSelection("Tuesday")}
+                      id={`${
+                        selectedWeekdays.includes("Tuesday")
+                          ? "special"
+                          : "notSpecial"
+                      }`}
+                    >
+                      Tue
+                    </Button>
+                    <Button
+                      className={`ui roboto weekdayBtn `}
+                      type="button"
+                      onClick={() => toggleSelection("Wednesday")}
+                      id={`${
+                        selectedWeekdays.includes("Wednesday")
+                          ? "special"
+                          : "notSpecial"
+                      }`}
+                    >
+                      Wed
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      className={`ui roboto weekdayBtn `}
+                      type="button"
+                      onClick={() => toggleSelection("Thursday")}
+                      id={`${
+                        selectedWeekdays.includes("Thursday")
+                          ? "special"
+                          : "notSpecial"
+                      }`}
+                    >
+                      Thu
+                    </Button>
+                    <Button
+                      className={`ui roboto weekdayBtn `}
+                      type="button"
+                      onClick={() => toggleSelection("Friday")}
+                      id={`${
+                        selectedWeekdays.includes("Friday")
+                          ? "special"
+                          : "notSpecial"
+                      }`}
+                    >
+                      Fri
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      className={`ui roboto weekdayBtn `}
+                      type="button"
+                      onClick={() => toggleSelection("Saturday")}
+                      id={`${
+                        selectedWeekdays.includes("Saturday")
+                          ? "special"
+                          : "notSpecial"
+                      }`}
+                    >
+                      Sat
+                    </Button>
+                    <Button
+                      className={`ui roboto weekdayBtn `}
+                      type="button"
+                      onClick={() => toggleSelection("Sunday")}
+                      id={`${
+                        selectedWeekdays.includes("Sunday")
+                          ? "special"
+                          : "notSpecial"
+                      }`}
+                    >
+                      Sun
+                    </Button>
+                  </div>
+                </div>
+              </Form.Field>
+            )}
+          </Form>
+        </div>
+        <div className=" mx-10  bg-teal-100 bg-opacity-50 flex flex-col items-center	w-60 pt-4 pb-3  addSubmitBox mb-20">
           <Button
-            className="submit my-5 p-2 rounded-md border-2 border-gray-300 bg-gray-200 hover:bg-gray-300"
+            className=" 
+          ui roboto hello submit"
             type="submit"
+            form="add-form"
+            id="formSubmitBtn"
           >
-            Submit
+            Add routine
           </Button>
-        </Form>
+        </div>
       </div>
     </>
   );

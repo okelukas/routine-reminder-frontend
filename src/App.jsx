@@ -23,8 +23,8 @@ function App() {
       <AuthState>
         <CookieState>
           <RoutineState>
-            <Container>
-              <Routes>
+            <Routes>
+              
                 <Route element={<Layout />}>
                   <Route path="/" element={<Landing />} />
                   <Route path="/login" element={<Login />} />
@@ -35,8 +35,7 @@ function App() {
                     <Route path="/routines" element={<OverviewRoutines />} />
                   </Route>
                 </Route>
-              </Routes>
-            </Container>
+            </Routes>
           </RoutineState>
         </CookieState>
       </AuthState>

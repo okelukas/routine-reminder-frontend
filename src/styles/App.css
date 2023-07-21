@@ -1,0 +1,67 @@
+.ui.roboto.button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.inputEdit {
+  padding: 4px;
+  border-radius: 8px;
+}
+
+#special {
+  background-color: #78b1ca;
+  color: #f1f1f1;
+}
+#notSpecial {
+  background-color: #f1f1f1;
+  color: #818181;
+}
+
+.ui.weekdayBtn.button {
+  border: 1px solid #818181;
+  border-radius: 10px;
+  margin: 5px;
+  font-size: 0.8em;
+  height: 3em;
+  width: 5em;
+  text-align: centers;
+}
+
+.ui.addFrequencyBtn.button {
+  background-color: #f1f1f1;
+}
+
+.ui.addFrequencyBtn.button:focus {
+  background-color: #78b1ca;
+}
+#btnFrequencyDaily {
+  background-color: #78b1ca;
+}
+
+.addSubmitBox {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: relative;
+}
+
+.addSubmitBox::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(29, 128, 145) 0%,
+    rgba(16, 151, 175, 0) 100%
+  );
+}
+
+#formSubmitBtn {
+  background-color: transparent;
+  color: #f1f1f1;
+  font-size: 1.25em;
+  text-shadow: #015563 1px 0 10px;
+}
