@@ -1,22 +1,29 @@
-/* import React from "react";
-import { Container } from "semantic-ui-react";
-import { Outlet } from "react-router-dom";
+import React from "react";
 import "../styles/index.css";
+import { Link } from "react-router-dom";
 
 export default () => {
   return (
     <>
-      <Container className="py-10 ">
-        <h4 className="ui header ">
-          <img
-            src="../src/assets/toothbrush.png"
-            style={{ height: "30px", width: "30px" }}
-          />
-          <div className="content">routine reminder.</div>
-        </h4>
-        <Outlet />
-      </Container>
+      <nav className="fixed bottom-0 backdrop-blur-sm bg-navbar  bg-opacity-50 max-w-lg  w-full h-16 font-sans font-light ">
+        <div className="grid h-full  grid-cols-3 mx-auto text-white-100 text-xl ">
+          <button type="button">
+            <span>Profile</span>
+          </button>
+
+          <button type="button">
+            <Link to="/home">
+              <span>Home</span>
+            </Link>
+          </button>
+
+          <button type="button">
+            <Link to="/routines">
+              <span>Routines</span>
+            </Link>
+          </button>
+        </div>
+      </nav>
     </>
   );
 };
- */

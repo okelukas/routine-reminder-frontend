@@ -19,22 +19,28 @@ export default function Routines() {
     deactivationStatus,
     editRequestStatus,
     completionStatus,
+    routines,
+    getCurrentDay,
   } = useRoutines();
 
   // ON RENDER
 
   useEffect(() => {
     updateRoutines();
-
     fetchData();
   }, [deactivationStatus, completionStatus, editRequestStatus]);
 
   //console.log(sortedRoutines.routines?.edit);
+
+  const today = getCurrentDay();
+  const day = today.getDate();
+  const month = today.getMonth();
+
   return (
     <>
-      <div className="w-96 flex flex-col m-auto">
-        <h1 className="text-2xl text-center p-5">
-          Routines – {sortedRoutines.weekday}
+      <div className=" flex flex-col m-auto font-sans">
+        <h1 className="text-2xl pr-5 text-right pb-2 font-sans font-light">
+          {sortedRoutines.weekday}, {day}.{month + 1}.
         </h1>
 
         {sortedRoutines && sortedRoutines.routines?.length ? (
@@ -54,13 +60,13 @@ export default function Routines() {
           <p>No routines found for {sortedRoutines.weekday}</p>
         )}
 
-        <div className="flex justify-center p-5">
+        <div className="flex justify-center ">
           <Link to="/add">
             <button>
               <img
                 src="..\src\assets\plus.png"
                 alt="add"
-                className="h-10 p-1 bg-amber-200"
+                className="max-w-12 max-h-12 rounded-xl p-2 backdrop-blur-xl bg-teal-100 opacity-90 m-5"
               />
             </button>
           </Link>

@@ -33,6 +33,10 @@ const RoutineState = ({ children }) => {
 
   //PREPARE ARRAY FOR CARDS
 
+  const getCurrentDay = () => {
+    return new Date();
+  };
+
   const createRoutinesArray = (routinesData) => {
     const daysOfWeek = [
       "Monday",
@@ -65,7 +69,7 @@ const RoutineState = ({ children }) => {
       }
     }
 
-    const d = new Date();
+    const d = getCurrentDay();
     let currentDate = d.getDay();
     if (currentDate >= 1) {
       currentDate -= 1;
@@ -73,6 +77,17 @@ const RoutineState = ({ children }) => {
       currentDate = 6;
     }
     console.log(weekdaysWithRoutines[currentDate]);
+
+    //sort routines by time
+
+    const prepRoutes = weekdaysWithRoutines[currentDate];
+    const data = prepRoutes.routines;
+    data.sort((a, b) => a.time.localeCompare(b.time));
+    const newData = {
+      routines: data, 
+      weekday: prepRoutes.weekday, 
+    };
+    console.log(newData);
 
     setSortedRoutines(weekdaysWithRoutines[currentDate]);
   };
@@ -181,6 +196,7 @@ const RoutineState = ({ children }) => {
         completionStatus,
         editRequestStatus,
         getRoutines,
+        getCurrentDay,
       }}
     >
       {" "}
