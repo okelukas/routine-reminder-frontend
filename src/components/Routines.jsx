@@ -7,28 +7,38 @@ import useAuth from "../hooks/useAuth";
 import { useRoutines } from "../contexts/RoutineContext.jsx";
 
 export default function Routines() {
-  /* const [resetCookie, setResetCookie] = useState(false);
-  const [data, setData] = useState([]); */
-
-  //const { getRoutines } = useAuth();
+  const [editItem, setEditItem] = useState();
+  const [showOptions, setShowOptions] = useState();
   const {
     sortedRoutines,
-    getRoutines,
     fetchData,
     updateRoutines,
     deactivationStatus,
     editRequestStatus,
     completionStatus,
-    routines,
     getCurrentDay,
   } = useRoutines();
+
+  const editRequest = (id) => {
+    setEditItem(id);
+  };
+  const showOptionsRequest = (id) => {
+    setShowOptions(id);
+    setEditItem(null);
+  };
 
   // ON RENDER
 
   useEffect(() => {
-    updateRoutines();
+    //updateRoutines();
     fetchData();
-  }, [deactivationStatus, completionStatus, editRequestStatus]);
+  }, [
+    deactivationStatus,
+    completionStatus,
+    editRequestStatus,
+    editItem,
+    showOptions,
+  ]);
 
   //console.log(sortedRoutines.routines?.edit);
 
@@ -52,12 +62,20 @@ export default function Routines() {
                 time={routine.time}
                 id={routine.routine_id}
                 complete={routine.complete}
-                editRequestStatusAPI={routine.edit}
+                editItem={editItem}
+                setEditItem={setEditItem}
+                editRequest={editRequest}
+                showOptionsRequest={showOptionsRequest}
+                showOptions={showOptions}
               />
             </>
           ))
         ) : (
-          <p>No routines found for {sortedRoutines.weekday}</p>
+          <div className="mt-16  rounded-xl mx-20 bg-teal-100 bg-opacity-50 px-12  ">
+            <h1 className="text-md text-left py-8 font-medium font-sans ">
+              No routines found for {sortedRoutines.weekday} yet
+            </h1>
+          </div>
         )}
 
         <div className="flex justify-center ">

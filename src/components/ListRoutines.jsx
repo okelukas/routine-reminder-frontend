@@ -9,40 +9,38 @@ export default function ListRoutines({
   time,
   id,
   complete,
-  editRequestStatusAPI,
+  editRequest,
+  editItem,
+  setEditItem,
+  showOptionsRequest,
+  showOptions,
 }) {
   const displayTime = time.slice(0, 5);
   const routineRef = useRef();
   const timeRef = useRef();
-  const [inputState, setInputState] = useState(true);
-  const [menu, setMenu] = useState(false);
-  const {
-    deactivateRoutine,
-    editRequest,
-    editRequestStatus,
-    editRoutine,
-    completionStatus,
-    completeRoutine,
-  } = useRoutines();
+  //const [inputState, setInputState] = useState(true);
+  //const [menu, setMenu] = useState(false);
+  const { deactivateRoutine, editRoutine, completionStatus, completeRoutine } =
+    useRoutines();
 
-  //console.log(time);
+  //console.log(optionsRequest);
 
   const handleSubmit = async () => {
     await editRoutine(routineRef.current.value, timeRef.current.value, id);
-    setInputState(true);
+    setEditItem(null);
   };
-  //console.log(editRequestStatusAPI);
+  //console.log(editItem, id);
   return (
     <>
       <div
-        className={`content-center rounded-xl py-5 grid grid-cols-12 m-2 px-5 text-lg ${
+        className={`content-center rounded-xl py-5 grid grid-cols-12 m-2 mx-10 px-5 text-lg ${
           complete
             ? "bg-blend-lighten backdrop-brightness-105"
             : "backdrop-blur-xl bg-teal-100 opacity-90"
         } `}
         key={id}
       >
-        {editRequestStatusAPI ? (
+        {editItem === id ? (
           <>
             <input
               className="inputEdit col-span-3 mr-1"
@@ -52,6 +50,7 @@ export default function ListRoutines({
               ref={timeRef}
               defaultValue={time}
               step="3600"
+              id="input"
             />
             <input
               className=" inputEdit col-span-7"
@@ -59,6 +58,8 @@ export default function ListRoutines({
               name="routine"
               placeholder={routine}
               ref={routineRef}
+              defaultValue={routine}
+              id="input"
             />
           </>
         ) : (
@@ -81,32 +82,46 @@ export default function ListRoutines({
             )}
           </>
         )}
-        <button className="flex justify-center">
-          <Icon
-            name="trash"
-            alt="delete"
-            className=" col-span-1"
-            onClick={() => deactivateRoutine(id)}
-          />
-        </button>
 
-        <button className="flex justify-center">
-          {editRequestStatusAPI ? (
-            <Icon
-              name="save"
-              alt="save"
-              className=" text-gray-200"
-              onClick={() => handleSubmit(id)}
-            />
-          ) : (
-            <Icon
-              name="edit"
-              alt="edit"
-              className=""
-              onClick={() => editRequest(id)}
-            />
-          )}
-        </button>
+        {showOptions === id ? (
+          <>
+            <button>
+              <Icon
+                name="trash"
+                alt="delete"
+                className=" col-span-1"
+                onClick={() => deactivateRoutine(id)}
+              />
+            </button>
+
+            <button>
+              {editItem === id ? (
+                <Icon
+                  name="save"
+                  alt="save"
+                  className=" text-gray-200"
+                  onClick={() => handleSubmit(id)}
+                />
+              ) : (
+                <Icon
+                  name="edit"
+                  alt="edit"
+                  className=""
+                  onClick={() => editRequest(id)}
+                />
+              )}
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="col-span-2"
+              onClick={() => showOptionsRequest(id)}
+            >
+              <Icon name="ellipsis horizontal" id="ellipsis" />
+            </button>
+          </>
+        )}
       </div>
     </>
   );

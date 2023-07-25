@@ -8,6 +8,26 @@
   border-radius: 8px;
 }
 
+#input {
+  color: black;
+  background-color: #f0fbff;
+  border-radius: 10px;
+  border: 1px solid #818181;
+}
+
+#errorMessage {
+  color: rgba(206, 89, 89, 0.697);
+  font-size: 0.8em;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  border: 1px solid #818181;
+  height: 3.5em;
+}
+
+.textGray200 {
+  color: #282828;
+}
+
 #special {
   background-color: #78b1ca;
   color: #f1f1f1;
@@ -34,8 +54,12 @@
 .ui.addFrequencyBtn.button:focus {
   background-color: #78b1ca;
 }
-#btnFrequencyDaily {
+#btnSelected {
   background-color: #78b1ca;
+}
+#btnNotSelected {
+  background-color: #f1f1f1;
+  color: #818181;
 }
 
 .addSubmitBox {
@@ -65,3 +89,4 @@
   font-size: 1.25em;
   text-shadow: #015563 1px 0 10px;
 }
+

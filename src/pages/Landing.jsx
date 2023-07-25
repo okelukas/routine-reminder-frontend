@@ -5,17 +5,13 @@ import { NavLink } from "react-router-dom";
 export default function Landing() {
   return (
     <>
-      <div className="flex justify-center m-20">
+      <div className="min-w-screen bg-center bg-backgroundImage bg-cover flex	mx-auto min-h-screen max-w-lg  justify-center">
         <NavLink to="/login">
-          <div className="flex-col rounded-xl overflow-hidden shadow-md m-5 max-w-md">
-            <img
-              src="../src/assets/toothbrush.png"
-              alt="RR"
-              className="bg-amber-200 p-20"
-            />
-            <p className="text-amber-100 font-bold p-10 text-4xl text-center	bg-black">
-              routine reminder.
-            </p>
+          <div className="rounded-xl mt-56 bg-teal-100 bg-opacity-90 flex flex-col shadow-xl">
+            <span className="text-4xl font-md font-typewriter p-10 py-15 leading-relaxed">
+              routine <br />
+              reminder.
+            </span>
           </div>
         </NavLink>
       </div>
