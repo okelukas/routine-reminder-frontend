@@ -54,7 +54,7 @@ export default function AddRoutine(props) {
       };
 
       await axios.post(
-        "http://localhost:3000/api/home",
+        `${REACT_APP_API_URL}api/home`,
         {
           name: routineValue,
           time: `${timeValue}:00`,
