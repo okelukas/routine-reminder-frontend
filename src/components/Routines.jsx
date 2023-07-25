@@ -3,8 +3,7 @@ import axios from "axios";
 import ListRoutines from "./ListRoutines.jsx";
 import "../styles/App.css";
 import { Link } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
-import { useRoutines } from "../contexts/RoutineContext.jsx";
+import useRoutines from "../hooks/useRoutines.jsx";
 
 export default function Routines() {
   const [editItem, setEditItem] = useState();

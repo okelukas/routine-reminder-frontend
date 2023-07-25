@@ -13,6 +13,7 @@ const AuthState = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginUser, setLoginUser] = useState(false);
+  const apiURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -38,13 +39,10 @@ const AuthState = ({ children }) => {
   const logInUser = async (email, password) => {
     try {
       setLoading(true);
-      const { data: token } = await axios.post(
-        "http://localhost:3000/jwt/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const { data: token } = await axios.post(`${apiURL}/jwt/login`, {
+        email: email,
+        password: password,
+      });
       setError(null);
       localStorage.setItem("token", token);
       setToken(token);
@@ -61,14 +59,11 @@ const AuthState = ({ children }) => {
     try {
       setLoading(true);
 
-      const { data: token } = await axios.post(
-        `${REACT_APP_API_URL}/jwt/signup`,
-        {
-          email: email,
-          username: username,
-          password: password,
-        }
-      );
+      const { data: token } = await axios.post(`${apiURL}/jwt/signup`, {
+        email: email,
+        username: username,
+        password: password,
+      });
       setError(null);
       localStorage.setItem("token", token);
       setToken(token);
@@ -91,7 +86,7 @@ const AuthState = ({ children }) => {
 
   const getRoutines = async () => {
     try {
-      const { data } = await axios.get(`${REACT_APP_API_URL}/api/home`, {
+      const { data } = await axios.get(`${apiURL}/api/home`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -105,7 +100,7 @@ const AuthState = ({ children }) => {
 
   const getProfile = async () => {
     try {
-      const { data } = await axios.get(`${REACT_APP_API_URL}/api/profile`, {
+      const { data } = await axios.get(`${apiURL}/api/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
