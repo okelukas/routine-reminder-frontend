@@ -32,7 +32,7 @@ export default function Profile() {
     try {
       const header = getHeader();
       await axios.put(
-        `http://localhost:3000/api/profile`,
+        `${REACT_APP_API_URL}/api/profile`,
         {
           email: emailValue,
           username: usernameValue,
@@ -50,7 +50,7 @@ export default function Profile() {
     try {
       const header = getHeader();
       await axios.put(
-        `http://localhost:3000/api/profile/password`,
+        `${REACT_APP_API_URL}/api/profile/password`,
         {
           password: passwordValue,
         },

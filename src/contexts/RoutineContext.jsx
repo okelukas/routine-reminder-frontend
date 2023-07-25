@@ -111,7 +111,7 @@ const RoutineState = ({ children }) => {
     try {
       const header = getHeader();
       const response = await axios.put(
-        `http://localhost:3000/api/home/${id}/deactivate`,
+        `${REACT_APP_API_URL}/api/home/${id}/deactivate`,
         {},
         {
           headers: header,
@@ -128,7 +128,7 @@ const RoutineState = ({ children }) => {
       const header = getHeader();
       console.log("Sending request with id:", idValue);
       await axios.put(
-        `http://localhost:3000/api/home/${idValue}/edit`,
+        `${REACT_APP_API_URL}/api/home/${idValue}/edit`,
         {
           time: timeValue,
           routine: routineValue,
@@ -154,7 +154,7 @@ const RoutineState = ({ children }) => {
       const header = getHeader();
       console.log("Sending request with id:", idValue);
       await axios.put(
-        `http://localhost:3000/api/home/${idValue}/editentire`,
+        `${REACT_APP_API_URL}/api/home/${idValue}/editentire`,
         {
           time: timeValue,
           routine: routineValue,
@@ -177,7 +177,7 @@ const RoutineState = ({ children }) => {
       const header = getHeader();
 
       const response = await axios.put(
-        `http://localhost:3000/api/home/${id}/complete`,
+        `${REACT_APP_API_URL}/api/home/${id}/complete`,
         {},
         {
           headers: header,

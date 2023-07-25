@@ -19,7 +19,7 @@ const CookieState = ({ children }) => {
     try {
       const header = getHeader();
       const response = await axios.put(
-        "http://localhost:3000/api/home/setCookie",
+        `${REACT_APP_API_URL}/api/home/setCookie`,
         {},
         {
           headers: header,
@@ -40,7 +40,7 @@ const CookieState = ({ children }) => {
       const header = getHeader();
       const response = await axios
         .put(
-          "http://localhost:3000/api/home/reset",
+          `${REACT_APP_API_URL}/api/home/reset`,
           {},
           {
             headers: header,
