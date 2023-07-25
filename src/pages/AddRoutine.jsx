@@ -13,6 +13,7 @@ export default function AddRoutine(props) {
   const [frequency, setFrequency] = useState(true);
   const [weekly, setWeekly] = useState(false);
   const { editEntireRoutine } = useRoutines();
+  const apiURL = import.meta.env.VITE_API_URL;
 
   const location = useLocation();
   const { routineLink, timeLink, idLink, dailyLink, weekdaysLink } =
@@ -54,7 +55,7 @@ export default function AddRoutine(props) {
       };
 
       await axios.post(
-        `${REACT_APP_API_URL}api/home`,
+        `${apiURL}/api/home`,
         {
           name: routineValue,
           time: `${timeValue}:00`,

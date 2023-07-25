@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export const CookieContext = createContext();
-
+const apiURL = import.meta.env.VITE_API_URL;
 export const useCookies = () => useContext(CookieContext);
 
 const CookieState = ({ children }) => {
@@ -19,7 +19,7 @@ const CookieState = ({ children }) => {
     try {
       const header = getHeader();
       const response = await axios.put(
-        `${REACT_APP_API_URL}/api/home/setCookie`,
+        `${apiURL}/api/home/setCookie`,
         {},
         {
           headers: header,
@@ -40,7 +40,7 @@ const CookieState = ({ children }) => {
       const header = getHeader();
       const response = await axios
         .put(
-          `${REACT_APP_API_URL}/api/home/reset`,
+          `${apiURL}/api/home/reset`,
           {},
           {
             headers: header,

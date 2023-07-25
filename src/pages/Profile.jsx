@@ -12,6 +12,7 @@ export default function Profile() {
   const [username, setUsername] = useState();
   const [edit, setEdit] = useState("");
   const [editPasswordState, setEditPasswordState] = useState(false);
+  const apiURL = import.meta.env.VITE_API_URL;
 
   const { getHeader } = useRoutines();
   const emailRef = useRef();
@@ -32,7 +33,7 @@ export default function Profile() {
     try {
       const header = getHeader();
       await axios.put(
-        `${REACT_APP_API_URL}/api/profile`,
+        `${apiURL}/api/profile`,
         {
           email: emailValue,
           username: usernameValue,
@@ -50,7 +51,7 @@ export default function Profile() {
     try {
       const header = getHeader();
       await axios.put(
-        `${REACT_APP_API_URL}/api/profile/password`,
+        `${apiURL}/api/profile/password`,
         {
           password: passwordValue,
         },

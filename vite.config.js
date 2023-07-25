@@ -20,15 +20,15 @@ export default defineConfig({
       workbox: {
         clientsClaim: true,
         skipWaiting: true,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
         runtimeCaching: [
           {
-            handler: 'NetworkOnly',
+            handler: "NetworkOnly",
             urlPattern: /\/api\/.*\/*.json/,
-            method: 'POST',
+            method: "POST",
             options: {
               backgroundSync: {
-                name: 'myQueueName',
+                name: "myQueueName",
                 options: {
                   maxRetentionTime: 24 * 60,
                 },
