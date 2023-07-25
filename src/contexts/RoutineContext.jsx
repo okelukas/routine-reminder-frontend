@@ -16,6 +16,7 @@ const RoutineState = ({ children }) => {
   const [routines, setRoutines] = useState([]);
   const [deactivationStatus, setDeactivationStatus] = useState(false);
   const [completionStatus, setCompletionStatus] = useState(false);
+  const apiURL = import.meta.env.VITE_API_URL;
 
   const getHeader = () => {
     const token = localStorage.getItem("token");
@@ -111,7 +112,7 @@ const RoutineState = ({ children }) => {
     try {
       const header = getHeader();
       const response = await axios.put(
-        `${REACT_APP_API_URL}/api/home/${id}/deactivate`,
+        `${apiURL}/api/home/${id}/deactivate`,
         {},
         {
           headers: header,
@@ -128,7 +129,7 @@ const RoutineState = ({ children }) => {
       const header = getHeader();
       console.log("Sending request with id:", idValue);
       await axios.put(
-        `${REACT_APP_API_URL}/api/home/${idValue}/edit`,
+        `${apiURL}/api/home/${idValue}/edit`,
         {
           time: timeValue,
           routine: routineValue,
@@ -154,7 +155,7 @@ const RoutineState = ({ children }) => {
       const header = getHeader();
       console.log("Sending request with id:", idValue);
       await axios.put(
-        `${REACT_APP_API_URL}/api/home/${idValue}/editentire`,
+        `${apiURL}/api/home/${idValue}/editentire`,
         {
           time: timeValue,
           routine: routineValue,
@@ -177,7 +178,7 @@ const RoutineState = ({ children }) => {
       const header = getHeader();
 
       const response = await axios.put(
-        `${REACT_APP_API_URL}/api/home/${id}/complete`,
+        `${apiURL}/api/home/${id}/complete`,
         {},
         {
           headers: header,
