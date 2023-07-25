@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import AddRoutine from "./pages/AddRoutine";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
+import About from "./pages/About";
 import { Link, Routes, Route } from "react-router-dom";
 
 import AuthState from "./contexts/AuthContext.jsx";
@@ -24,17 +26,18 @@ function App() {
         <CookieState>
           <RoutineState>
             <Routes>
-              
-                <Route element={<Layout />}>
-                  <Route path="/" element={<Landing />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route element={<ProtectedRoute />}>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/add" element={<AddRoutine />} />
-                    <Route path="/routines" element={<OverviewRoutines />} />
-                  </Route>
+              <Route path="/" element={<Landing />} />
+              <Route element={<Layout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/add" element={<AddRoutine />} />
+                  <Route path="/routines" element={<OverviewRoutines />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/about" element={<About />} />
                 </Route>
+              </Route>
             </Routes>
           </RoutineState>
         </CookieState>

@@ -1,17 +1,17 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "../styles/index.css";
-import { useAuth } from "../contexts/AuthContext";
+import useAuth from "../hooks/useAuth";
 import Navbar from "./Navbar.jsx";
 
 export default () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  //console.log(isAuthenticated);
+  
 
   return (
     <>
-      <div className="min-w-screen bg-center bg-backgroundImage bg-cover	mx-auto min-h-screen max-w-lg">
+      <div className="min-w-screen bg-center bg-backgroundImage bg-cover content-center mx-auto min-h-screen max-w-lg">
         <h2 className="">
           <div
             className="font-typewriter font-medium
@@ -23,7 +23,7 @@ export default () => {
         <div className="pb-16 font-sans">
           <Outlet />
         </div>
-        <Navbar />
+        { isAuthenticated && <Navbar />}
       </div>
     </>
   );

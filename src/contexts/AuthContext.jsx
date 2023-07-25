@@ -57,7 +57,7 @@ const AuthState = ({ children }) => {
     setLoading(false);
   };
 
-  const signUpUser = async (email, username, password, timezone) => {
+  const signUpUser = async (email, username, password) => {
     try {
       setLoading(true);
 
@@ -67,7 +67,6 @@ const AuthState = ({ children }) => {
           email: email,
           username: username,
           password: password,
-          timezone: timezone,
         }
       );
       setError(null);
@@ -104,6 +103,20 @@ const AuthState = ({ children }) => {
     }
   };
 
+  const getProfile = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/api/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -112,7 +125,7 @@ const AuthState = ({ children }) => {
         loading,
         isAuthenticated,
         getRoutines,
-
+        getProfile,
         logout,
         logInUser,
         signUpUser,

@@ -8,7 +8,10 @@ export default () => {
       <nav className="fixed bottom-0 backdrop-blur-sm bg-navbar  bg-opacity-50 max-w-lg  w-full h-16 font-sans font-light ">
         <div className="grid h-full  grid-cols-3 mx-auto text-white-100 text-xl ">
           <button type="button">
-            <span>Profile</span>
+            {" "}
+            <Link to="/profile">
+              <span>Profile</span>
+            </Link>
           </button>
 
           <button type="button">

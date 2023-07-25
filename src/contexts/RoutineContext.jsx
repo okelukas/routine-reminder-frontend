@@ -15,7 +15,6 @@ const RoutineState = ({ children }) => {
   const [sortedRoutines, setSortedRoutines] = useState([]);
   const [routines, setRoutines] = useState([]);
   const [deactivationStatus, setDeactivationStatus] = useState(false);
-  const [editRequestStatus, setEditRequestStatus] = useState(false);
   const [completionStatus, setCompletionStatus] = useState(false);
 
   const getHeader = () => {
@@ -84,8 +83,8 @@ const RoutineState = ({ children }) => {
     const data = prepRoutes.routines;
     data.sort((a, b) => a.time.localeCompare(b.time));
     const newData = {
-      routines: data, 
-      weekday: prepRoutes.weekday, 
+      routines: data,
+      weekday: prepRoutes.weekday,
     };
     console.log(newData);
 
@@ -124,22 +123,6 @@ const RoutineState = ({ children }) => {
     }
   };
 
-  const editRequest = async (id) => {
-    try {
-      const header = getHeader();
-      const response = await axios.put(
-        `http://localhost:3000/api/home/${id}/editrequest`,
-        {},
-        {
-          headers: header,
-        }
-      );
-      setEditRequestStatus((prevStatus) => !prevStatus);
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
   const editRoutine = async (routineValue, timeValue, idValue) => {
     try {
       const header = getHeader();
@@ -149,6 +132,34 @@ const RoutineState = ({ children }) => {
         {
           time: timeValue,
           routine: routineValue,
+        },
+        {
+          headers: header,
+        }
+      );
+      editRequest(idValue);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const editEntireRoutine = async (
+    routineValue,
+    timeValue,
+    dailyValue,
+    weekdaysValue,
+    idValue
+  ) => {
+    try {
+      const header = getHeader();
+      console.log("Sending request with id:", idValue);
+      await axios.put(
+        `http://localhost:3000/api/home/${idValue}/editentire`,
+        {
+          time: timeValue,
+          routine: routineValue,
+          daily: dailyValue,
+          weekdays: weekdaysValue,
         },
         {
           headers: header,
@@ -190,13 +201,12 @@ const RoutineState = ({ children }) => {
         getHeader,
         deactivateRoutine,
         deactivationStatus,
-        editRequest,
         editRoutine,
         completeRoutine,
         completionStatus,
-        editRequestStatus,
         getRoutines,
         getCurrentDay,
+        editEntireRoutine,
       }}
     >
       {" "}
