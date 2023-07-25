@@ -62,7 +62,7 @@ const AuthState = ({ children }) => {
       setLoading(true);
 
       const { data: token } = await axios.post(
-        "http://localhost:3000/jwt/signup",
+        `${REACT_APP_API_URL}/jwt/signup`,
         {
           email: email,
           username: username,
@@ -91,7 +91,7 @@ const AuthState = ({ children }) => {
 
   const getRoutines = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/home`, {
+      const { data } = await axios.get(`${REACT_APP_API_URL}/api/home`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -105,7 +105,7 @@ const AuthState = ({ children }) => {
 
   const getProfile = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/profile`, {
+      const { data } = await axios.get(`${REACT_APP_API_URL}/api/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
