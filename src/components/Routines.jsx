@@ -84,9 +84,9 @@ export default function Routines() {
 
         <div className="flex justify-center ">
           <Link to="/add">
-            <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex ">
+            <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex mb-10">
               <img
-                src="./images/plus.png"
+                src="../images/plus.png"
                 alt="add"
                 className=" max-w-12 max-h-12 p-3"
               />

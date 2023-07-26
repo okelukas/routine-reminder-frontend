@@ -80,7 +80,7 @@ export default function Overview({
                 <Icon
                   name="edit"
                   alt="edit"
-                  className=""
+                  className="bg-black text-black"
                   /* onClick={() => editRequest(id)} */
                 />
               </Link>
