@@ -24,6 +24,10 @@
   height: 3.5em;
 }
 
+#darkGrayFont {
+  color: #282828;
+}
+
 .textGray200 {
   color: #282828;
 }
