@@ -81,7 +81,7 @@ export default function Routines() {
           <Link to="/add">
             <button>
               <img
-                src="..\src\assets\plus.png"
+                src="src\assets\plus.png"
                 alt="add"
                 className="max-w-12 max-h-12 rounded-xl p-2 backdrop-blur-xl bg-teal-100 opacity-90 m-5"
               />
