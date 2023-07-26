@@ -33,7 +33,7 @@ export default function ListRoutines({
   return (
     <>
       <div
-        className={`content-center rounded-xl py-5 grid grid-cols-12 m-2 mx-10 px-5  ${
+        className={`content-center rounded-xl py-5 grid grid-cols-12 m-2 mx-10 px-5 text-lg  ${
           complete
             ? "bg-blend-lighten backdrop-brightness-105"
             : "backdrop-blur-xl bg-teal-100 opacity-90"
@@ -64,21 +64,21 @@ export default function ListRoutines({
           </>
         ) : (
           <>
-            <h3 className="col-span-3 font-sans font-normal">{displayTime}</h3>
+            <span className="col-span-3">{displayTime}</span>
             {complete ? (
-              <p
+              <span
                 className="text-gray-100 line-through col-span-7"
                 onClick={() => completeRoutine(id)}
               >
                 {routine}
-              </p>
+              </span>
             ) : (
-              <p
+              <span
                 className="text-gray-200 col-span-7"
                 onClick={() => completeRoutine(id)}
               >
                 {routine}
-              </p>
+              </span>
             )}
           </>
         )}

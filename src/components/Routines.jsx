@@ -75,10 +75,10 @@ export default function Routines() {
             </>
           ))
         ) : (
-          <div className="mt-16  rounded-xl mx-20 bg-teal-100 bg-opacity-50 px-12  ">
-            <h1 className="text-md text-left py-8 font-medium font-sans ">
+          <div className="mt-16  rounded-xl mx-20 bg-teal-100 bg-opacity-50 px-5 py-5 ">
+            <span className="text-lg text-center py-8 font-sans ">
               No routines found for {sortedRoutines.weekday} yet
-            </h1>
+            </span>
           </div>
         )}
 
@@ -86,7 +86,7 @@ export default function Routines() {
           <Link to="/add">
             <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex ">
               <img
-                src="../src/assets/plus.png"
+                src="./images/plus.png"
                 alt="add"
                 className=" max-w-12 max-h-12 p-3"
               />
