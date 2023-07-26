@@ -91,7 +91,7 @@ export default function Profile() {
     <>
       <div className="flex flex-col items-center ">
         <div className="rounded-xl mx-5 bg-teal-100 bg-opacity-50 flex flex-col px-8 pb-8 w-5/6 ">
-          <h1 className="text-2xl text-left py-8 font-400 font-sans">
+          <h1 className="text-2xl text-left py-8 font-normal font-sans">
             Profile
           </h1>
           <div className="content-center rounded-xl py-5 grid grid-cols-7 m-2 px-5 text-lg backdrop-blur-xl bg-teal-100 opacity-90">
