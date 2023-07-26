@@ -47,7 +47,7 @@ export default function Routines() {
 
   return (
     <>
-      <div className=" flex flex-col m-auto font-sans">
+      <div className=" flex flex-col font-sans">
         <h1 className="text-2xl pr-5 text-right pb-2 font-sans font-light">
           {sortedRoutines.weekday}, {day}.{month + 1}.
         </h1>
@@ -79,11 +79,11 @@ export default function Routines() {
 
         <div className="flex justify-center ">
           <Link to="/add">
-            <button>
+            <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex ">
               <img
-                src="src\assets\plus.png"
+                src="./src/assets/plus.png "
                 alt="add"
-                className="max-w-12 max-h-12 rounded-xl p-2 backdrop-blur-xl bg-teal-100 opacity-90 m-5"
+                className=" max-w-12 max-h-12 p-3"
               />
             </button>
           </Link>
