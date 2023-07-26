@@ -183,7 +183,7 @@ export default function Profile() {
           </button>
         </div>
         <Link to="/about">
-          <div className="content-center rounded-xl py-5 mb-10 m-2 px-5 text-lg backdrop-blur-xl bg-teal-100 opacity-90 mt-10">
+          <div className="content-center rounded-xl py-5 mb-10 m-2 px-5 text-gray-200 text-lg backdrop-blur-xl bg-teal-100 opacity-90 mt-10">
             <>
               <span>About routine reminder</span>
             </>
