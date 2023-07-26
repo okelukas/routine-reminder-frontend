@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default () => {
   return (
     <>
-      <nav className="fixed bottom-0 backdrop-blur-sm bg-navbar  bg-opacity-50 max-w-lg  w-full h-16 font-sans font-light ">
+      <nav className="fixed bottom-0 backdrop-blur-sm bg-navbar  bg-opacity-50 max-w-lg  w-full h-20 font-sans font-light ">
         <div className="grid h-full  grid-cols-3 mx-auto text-xl ">
           <button type="button">
             {" "}
