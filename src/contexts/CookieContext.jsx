@@ -29,7 +29,7 @@ const CookieState = ({ children }) => {
       const cookie = response.data;
       //localStorage.setItem("resetCookie", cookie);
       localStorage.setItem("resetCookie", cookie);
-      console.log("Cookie set successfully");
+      //console.log("Cookie set successfully");
     } catch (error) {
       console.log("Error:", error);
     }
@@ -47,7 +47,7 @@ const CookieState = ({ children }) => {
           }
         )
         .then((response) => {
-          console.log("Completion resetted successfully");
+          //console.log("Completion resetted successfully");
         })
         .catch((error) => {
           console.error("Failed to reset completion", error);
@@ -61,11 +61,11 @@ const CookieState = ({ children }) => {
     const cookieExists = localStorage.getItem("resetCookie") !== null;
 
     if (cookieExists) {
-      console.log("Cookie already exists");
+      //console.log("Cookie already exists");
     } else {
       resetCompletion();
       setCookie();
-      console.log("New Cookie created");
+      //console.log("New Cookie created");
     }
   };
 

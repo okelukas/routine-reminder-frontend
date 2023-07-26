@@ -77,7 +77,7 @@ const AuthState = ({ children }) => {
   };
 
   const logout = () => {
-    console.log("log out");
+    //console.log("log out");
     localStorage.removeItem("token");
     setToken(null);
     setIsAuthenticated(false);
@@ -91,7 +91,7 @@ const AuthState = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
+      //console.log(data);
       return data;
     } catch (error) {
       console.error(error);
@@ -105,7 +105,7 @@ const AuthState = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
+      //console.log(data);
       return data;
     } catch (error) {
       console.error(error);
