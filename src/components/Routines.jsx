@@ -4,6 +4,7 @@ import ListRoutines from "./ListRoutines.jsx";
 import "../styles/App.css";
 import { Link } from "react-router-dom";
 import useRoutines from "../hooks/useRoutines.jsx";
+import plus from "../src/assets/plus.png";
 
 export default function Routines() {
   const [editItem, setEditItem] = useState();
@@ -85,7 +86,7 @@ export default function Routines() {
         <div className="flex justify-center ">
           <Link to="/add">
             <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 mb-10">
-              <img src="/src/assets/plus.png" alt="add" className="h-10 m-3" />
+              <img src={plus} alt="add" className="h-10 m-3" />
               {/* <div
                 id="darkGrayFont"
                 className="text-6xl px-5 bb-15 font-gray-200 hover:font-gray-200"
