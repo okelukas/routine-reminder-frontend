@@ -44,12 +44,17 @@ export default function Routines() {
   const today = getCurrentDay();
   const day = today.getDate();
   const month = today.getMonth();
+  const currentMonth = month + 1;
+
+  console.log(currentMonth);
 
   return (
     <>
       <div className=" flex flex-col font-sans">
         <h1 className="text-2xl pr-5 text-right pb-2 font-sans font-light">
-          {sortedRoutines.weekday}, {day}.{month + 1}.
+          {sortedRoutines.weekday}, {day < 10 ? "0" : ""}
+          {day}.{currentMonth < 10 ? "0" : ""}
+          {currentMonth}.
         </h1>
 
         {sortedRoutines && sortedRoutines.routines?.length ? (
@@ -81,7 +86,7 @@ export default function Routines() {
           <Link to="/add">
             <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex ">
               <img
-                src="./src/assets/plus.png "
+                src="../src/assets/plus.png"
                 alt="add"
                 className=" max-w-12 max-h-12 p-3"
               />
