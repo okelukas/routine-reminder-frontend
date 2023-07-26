@@ -32,7 +32,7 @@ const Signup = () => {
           <Form
             size="large"
             onSubmit={handleSubmit}
-            loading={loading}
+            /* loading={loading} */
             error={error && error.length !== 0}
             id="signUpForm"
             className="pb-2"

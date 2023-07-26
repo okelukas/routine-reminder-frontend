@@ -40,6 +40,7 @@ export default function About() {
             <a href="https://www.pexels.com/photo/reflection-of-trees-3265460/">
               pexels
             </a>
+            .
           </p>
         </div>
       </div>

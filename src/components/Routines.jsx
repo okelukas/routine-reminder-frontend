@@ -85,7 +85,12 @@ export default function Routines() {
         <div className="flex justify-center ">
           <Link to="/add">
             <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex mb-10">
-              <div className="text-6xl px-5 bb-15 font-gray-200 ">+</div>
+              <div
+                id="darkGrayFont"
+                className="text-6xl px-5 bb-15 font-gray-200 hover:font-gray-200"
+              >
+                +
+              </div>
             </button>
           </Link>
         </div>
