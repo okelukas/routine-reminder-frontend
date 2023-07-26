@@ -69,7 +69,7 @@ export default function Profile() {
     loadProfile();
   }, [edit]);
 
-  console.log(edit);
+  //console.log(edit);
 
   const setEditState = (field) => {
     setEdit(field);
