@@ -139,7 +139,7 @@ export default function AddRoutine(props) {
             </Form.Field>
             <Form.Field className="">
               <input
-                className=" w-full bg-white"
+                className=" w-full bg-white min-h-"
                 required
                 type="time"
                 name="time"

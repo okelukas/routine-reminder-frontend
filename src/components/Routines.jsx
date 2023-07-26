@@ -84,7 +84,7 @@ export default function Routines() {
 
         <div className="flex justify-center ">
           <Link to="/add">
-            <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex mb-10">
+            <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 mb-10">
               <img src="src/assets/plus.png" alt="add" className="h-10 m-3" />
               {/* <div
                 id="darkGrayFont"
