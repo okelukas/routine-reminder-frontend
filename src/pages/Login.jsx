@@ -19,7 +19,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //setLoading(true);
+    setLoading(true);
     const emailValue = emailRef.current.value;
     const passwordValue = passwordRef.current.value;
     await logInUser(emailValue, passwordValue);
@@ -34,7 +34,7 @@ export default function Login() {
         <Form
           size="large"
           onSubmit={handleSubmit}
-          /* loading={loading} */
+          loading={loading}
           error={error && error.length !== 0}
           id="loginForm"
         >
