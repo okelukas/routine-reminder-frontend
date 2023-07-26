@@ -32,7 +32,7 @@ export default function Overview({
 
     const abbreviatedWeekdaysString = abbreviatedWeekdays.join(", ");
 
-    console.log(abbreviatedWeekdaysString);
+    //console.log(abbreviatedWeekdaysString);
 
     setWeekdaysPrepared(abbreviatedWeekdaysString);
   };
@@ -40,8 +40,8 @@ export default function Overview({
   useEffect(() => {
     prepWeekdays();
   }, []);
-  console.log(editToggle);
-  console.log(id);
+  /* console.log(editToggle);
+  console.log(id); */
   return (
     <>
       <div
@@ -80,7 +80,7 @@ export default function Overview({
                 <Icon
                   name="edit"
                   alt="edit"
-                  className="bg-black text-black"
+                  className=" text-black"
                   /* onClick={() => editRequest(id)} */
                 />
               </Link>

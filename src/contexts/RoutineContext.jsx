@@ -76,7 +76,7 @@ const RoutineState = ({ children }) => {
     } else {
       currentDate = 6;
     }
-    console.log(weekdaysWithRoutines[currentDate]);
+    //console.log(weekdaysWithRoutines[currentDate]);
 
     //sort routines by time
 
@@ -87,7 +87,7 @@ const RoutineState = ({ children }) => {
       routines: data,
       weekday: prepRoutes.weekday,
     };
-    console.log(newData);
+    //console.log(newData);
 
     setSortedRoutines(weekdaysWithRoutines[currentDate]);
   };
@@ -100,7 +100,7 @@ const RoutineState = ({ children }) => {
       checkCookieExpiration();
       const allRoutines = await getRoutines();
       setRoutines(allRoutines);
-      console.log(routines);
+      //console.log(routines);
 
       return allRoutines;
     } catch (err) {
@@ -127,7 +127,7 @@ const RoutineState = ({ children }) => {
   const editRoutine = async (routineValue, timeValue, idValue) => {
     try {
       const header = getHeader();
-      console.log("Sending request with id:", idValue);
+      //console.log("Sending request with id:", idValue);
       await axios.put(
         `${apiURL}/api/home/${idValue}/edit`,
         {
@@ -173,7 +173,7 @@ const RoutineState = ({ children }) => {
   };
 
   const completeRoutine = async (id) => {
-    console.log(id);
+    //console.log(id);
     try {
       const header = getHeader();
 
@@ -186,7 +186,7 @@ const RoutineState = ({ children }) => {
       );
 
       setCompletionStatus((prevStatus) => !prevStatus);
-      console.log(completionStatus);
+      //console.log(completionStatus);
     } catch (error) {
       console.log("Error:", error);
     }

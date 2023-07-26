@@ -49,7 +49,7 @@ export default function AddRoutine(props) {
   ) => {
     try {
       const token = localStorage.getItem("token");
-      console.log(token);
+      //console.log(token);
       const headers = {
         Authorization: `Bearer ${token}`,
       };
@@ -72,7 +72,7 @@ export default function AddRoutine(props) {
   };
   const changeFrequency = (selectedFrequency) => {
     setFrequency(selectedFrequency);
-    console.log(frequency);
+    //console.log(frequency);
   };
   const handleDailyClick = (event) => {
     event.preventDefault();

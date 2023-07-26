@@ -46,7 +46,7 @@ export default function Routines() {
   const month = today.getMonth();
   const currentMonth = month + 1;
 
-  console.log(currentMonth);
+  //console.log(currentMonth);
 
   return (
     <>
@@ -85,11 +85,7 @@ export default function Routines() {
         <div className="flex justify-center ">
           <Link to="/add">
             <button className="rounded-xl backdrop-blur-xl bg-teal-100 opacity-90 m-5 flex mb-10">
-              <img
-                src="../images/plus.png"
-                alt="add"
-                className=" max-w-12 max-h-12 p-3"
-              />
+              <div className="text-6xl px-5 bb-15 font-gray-200 ">+</div>
             </button>
           </Link>
         </div>
