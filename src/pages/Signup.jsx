@@ -44,7 +44,7 @@ const Signup = () => {
                 placeholder="Email"
                 type="email"
                 ref={emailRef}
-                id="input"
+                id="inputEmail"
               />
             </Form.Field>
             <Form.Field>
@@ -54,7 +54,7 @@ const Signup = () => {
                 placeholder="Username"
                 type="text"
                 ref={usernameRef}
-                id="input"
+                id="inputUsername"
               />
             </Form.Field>
             <Form.Field>
@@ -64,7 +64,7 @@ const Signup = () => {
                 placeholder="Password"
                 type="password"
                 ref={passwordRef}
-                id="input"
+                id="inputPassword"
               />
             </Form.Field>
             <Message error header={error} />{" "}
