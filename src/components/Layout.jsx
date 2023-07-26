@@ -9,7 +9,7 @@ export default () => {
 
   return (
     <>
-      <div className="min-w-screen bg-center bg-backgroundImage bg-cover content-center min-h-screen max-w-lg">
+      <div className="min-w-screen bg-center bg-backgroundImage bg-cover content-center mx-auto min-h-screen max-w-lg">
         <h2 className="">
           <div
             className="font-typewriter font-medium

@@ -64,7 +64,7 @@ export default function ListRoutines({
           </>
         ) : (
           <>
-            <h3 className="col-span-3 ">{displayTime}</h3>
+            <h3 className="col-span-3 font-sans">{displayTime}</h3>
             {complete ? (
               <p
                 className="text-gray-100 line-through col-span-7"

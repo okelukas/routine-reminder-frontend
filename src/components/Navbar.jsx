@@ -10,19 +10,19 @@ export default () => {
           <button type="button">
             {" "}
             <Link to="/profile">
-              <span className="text-white-100">Profile</span>
+              <span className="text-white-100 font-sans">Profile</span>
             </Link>
           </button>
 
           <button type="button">
             <Link to="/home">
-              <span className="text-white-100">Home</span>
+              <span className="text-white-100 font-sans">Home</span>
             </Link>
           </button>
 
           <button type="button">
             <Link to="/routines">
-              <span className="text-white-100">Routines</span>
+              <span className="text-white-100 font-sans">Routines</span>
             </Link>
           </button>
         </div>
