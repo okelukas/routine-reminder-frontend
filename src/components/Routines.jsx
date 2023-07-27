@@ -85,7 +85,12 @@ export default function Routines() {
         <div className="flex justify-center ">
           <Link to="/add">
             <button className="rounded-xl backdrop-blur-xl bg-teal-100 p-4 opacity-90 m-5 mb-10">
-              <span className="font-sans text-xl font-normal ">add</span>
+              <span
+                className="font-sans text-xl font-normal"
+                id="darkGrayFont"
+              >
+                add
+              </span>
               {/* <img src="/plus.png" alt="add" className="h-10 m-3" /> */}
               {/* <div
                 id="darkGrayFont"
