@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/App.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,11 +9,16 @@ const Signup = () => {
   const emailRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const { loading, error, signUpUser } = useAuth();
+  const { setLoading, loading, error, signUpUser } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     await signUpUser(
       emailRef.current.value,
       usernameRef.current.value,
