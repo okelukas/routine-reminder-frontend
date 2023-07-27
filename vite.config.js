@@ -39,7 +39,7 @@ export default defineConfig({
       },
       manifest: {
         name: "routine reminder",
-        short_name: "rr.",
+        short_name: "routine",
         description: "your lightweight habit tracker",
         theme_color: "#78B1CA",
         background_color: "#78B1CA",
