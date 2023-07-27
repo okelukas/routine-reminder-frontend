@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base dist",
-    "build:assets": "cp -r src/assets dist",
+    "build": "vite build --base ./dist",
+    "build:assets": "cp -r src/assets ./dist",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
