@@ -1,21 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/App.css";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 import useAuth from "../hooks/useAuth";
 
 export default function Login() {
-  const { loading, error, logInUser } = useAuth();
+  const { setLoading, loading, error, logInUser } = useAuth();
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
