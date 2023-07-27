@@ -118,6 +118,7 @@ const AuthState = ({ children }) => {
         token,
         error,
         loading,
+        setLoading,
         isAuthenticated,
         getRoutines,
         getProfile,
