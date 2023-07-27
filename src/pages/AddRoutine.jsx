@@ -188,6 +188,7 @@ export default function AddRoutine(props) {
                     </Button>
                     <Button
                       className={`ui roboto weekdayBtn `}
+                      type="button"
                       onClick={() => toggleSelection("Tuesday")}
                       id={`${
                         selectedWeekdays.includes("Tuesday")
